@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "myproject-1d357": {
+      "hosting": {
+        "angular-firebase": [
+          "myproject-1d357"
+        ]
+      }
+    }
+  }
+}
