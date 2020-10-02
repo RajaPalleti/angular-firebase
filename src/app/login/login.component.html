@@ -1,0 +1,30 @@
+<div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <h3 class="text-center">LOGIN</h3>
+        <div class="form-group" [ngClass]="{'has-error': loginForm.get('email').errors && (loginForm.get('email').touched || loginForm.get('email').dirty)}">
+            <label for="email">Email address</label>
+            <input id="email" type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && loginForm.get('email').errors }">
+            <div class="invalid-feedback"  *ngIf="submitted && loginForm.get('email').errors" >
+
+                <div  *ngIf="loginForm.get('email').errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="loginForm.get('email').errors.email">
+                    Invalid Email ID
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': submitted && loginForm.get('password').errors}">
+            <div *ngIf="submitted && loginForm.get('password').errors" class="invalid-feedback" >
+                <div *ngIf="loginForm.get('password').errors.required">Password required</div>
+                <div *ngIf="loginForm.get('password').errors.minlength">password must be 6 characters</div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-primary ml-1" routerLink="/register">Sign Up</button>
+        </div>
+    </form>
+</div>
