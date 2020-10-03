@@ -14,25 +14,24 @@ export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email, Validators.pattern(this.emailPattern)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-  })
-  constructor(private fb: FormBuilder, 
-    private router: Router, 
-    private loginService: LoginService,
-    private toastr: ToastrService
-    ) { }
+  });
+  constructor(private fb: FormBuilder, private router: Router, private loginService: LoginService, private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
-      // convenience getter for easy access to form fields
-      // get f() { return this.registerForm.controls; }
+  // convenience getter for easy access to form fields
+  // get f() { return this.registerForm.controls; }
   onSubmit() {
     console.log('form status', this.loginForm.status);
     this.submitted = true;
-    if(this.loginForm.valid) {
-      this.loginService.signin(this.loginForm.value.email, this.loginForm.value.password).then(res => {
-          this.router.navigate(['/layout'])
+    if (this.loginForm.valid) {
+      this.loginService.signin(this.loginForm.value.email, this.loginForm.value.password).then((res: any) => {
+        if (res) {
+          this.router.navigate(['/layout']);
           this.toastr.success('Logged in Successfully');
-      })
+        }
+      });
     }
 
   }

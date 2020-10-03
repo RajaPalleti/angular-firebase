@@ -10,3 +10,4 @@
   <button (click)="signin(email.value, password.value)">Sign in</button>
 </div>
 <app-dashboard *ngIf="isLoggedIn" (isLogOut)="isLogOut()"></app-dashboard> -->
+<router-outlet></router-outlet>
